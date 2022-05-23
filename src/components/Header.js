@@ -14,12 +14,12 @@ const Container = styled.header`
   width: 100%;
   height: 4rem;
   padding: 0 3rem;
-  background-color: var(--app-light);
+  background-color: var(--app-white-transparent);
   box-shadow: 0 0 12px #00000022;
 `;
 
 const Logo = styled.img`
-  height: 80%;
+  height: 75%;
 `;
 
 const Header = () => {
