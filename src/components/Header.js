@@ -20,6 +20,7 @@ const Container = styled.header`
 
 const Logo = styled.img`
   height: 75%;
+  filter: drop-shadow(4px 6px 6px var(--app-dark-transparent));
 `;
 
 const Header = () => {
