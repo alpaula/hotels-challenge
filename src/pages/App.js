@@ -3,8 +3,16 @@ import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+// Utils
+import {
+  getBreakfastList,
+  getTourAndBreakfastList,
+  getTourList
+} from '../utils/utils';
+
 // Components
 import Header from '../components/Header';
+import ActionBar from '../components/ActionBar';
 import Card from '../components/Card';
 import CardPlaceholder from '../components/CardPlaceholder';
 
@@ -29,6 +37,8 @@ const Content = styled.ul`
 const App = () => {
   const [hotelsList, setList] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const [isBreakfast, setBreakfast] = useState(false);
+  const [isTour, setTour] = useState(false);
 
   const getHotels = async () => {
     try {
@@ -45,6 +55,14 @@ const App = () => {
   useEffect(() => {
     getHotels();
   }, []);
+
+  const filterHotelsList = () => {
+    if (isBreakfast && isTour) return getTourAndBreakfastList(hotelsList);
+    if (isBreakfast) return getBreakfastList(hotelsList);
+    if (isTour) return getTourList(hotelsList);
+
+    return hotelsList;
+  }
 
   const renderPlaceholder = () => {
     const placeholderList = [...Array(8)];
@@ -65,7 +83,7 @@ const App = () => {
 
     return (
       <Content>
-        {hotelsList?.map(hotel => (
+        {filterHotelsList().map(hotel => (
           <Card
             key={hotel.id}
             item={hotel}
@@ -79,6 +97,12 @@ const App = () => {
     <Fragment>
       <Header />
       <Container>
+        <ActionBar
+          isBreakfast={isBreakfast}
+          setBreakfast={setBreakfast}
+          isTour={isTour}
+          setTour={setTour}
+        />
         {renderContent()}
       </Container>
     </Fragment>
