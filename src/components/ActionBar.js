@@ -15,6 +15,24 @@ const Container = styled.div`
   padding: 0 3rem;
 `;
 
+const SelectOrder = styled.select`
+  width: 16.5rem;
+  height: 2.25rem;
+  padding: 0 .25rem;
+  border: 2px solid var(--app-dark);
+  border-radius: 4px;
+  background-color: transparent;
+  font: 400 1rem 'Roboto', sans-serif;
+  color: var(--app-text);
+  outline: none;
+
+  :hover {
+    background-color: var(--app-light-second);
+  }
+`;
+
+const OptionOrder = styled.option``;
+
 const Label = styled.label`
   position: relative;
   display: flex;
@@ -55,17 +73,32 @@ const ActionBar = ({
   setBreakfast,
   isTour,
   setTour,
-}) => (
-  <Container>
-    <Label onClick={() => setBreakfast(!isBreakfast)}>
-      <Span checked={isBreakfast}></Span>
-      Café da manhã incluso
-    </Label>
-    <Label onClick={() => setTour(!isTour)}>
-      <Span checked={isTour}></Span>
-      Passeio incluso
-    </Label>
-  </Container>
-);
+  isOrder,
+  setOrder
+}) => {
+  const handleOrder = (ev) => {
+    const { value } = ev.target;
+    setOrder(value);
+  }
+
+  return (
+    <Container>
+      <SelectOrder name='order' onChange={handleOrder}>
+        <OptionOrder value='lowerValue'>Menor para maior valor</OptionOrder>
+        <OptionOrder value='biggerValue'>Maior para menor valor</OptionOrder>
+        <OptionOrder value='lowerClassification'>Menor para maior classificação</OptionOrder>
+        <OptionOrder value='biggerClassification' selected>Maior para menor classificação</OptionOrder>
+      </SelectOrder>
+      <Label onClick={() => setBreakfast(!isBreakfast)}>
+        <Span checked={isBreakfast}></Span>
+        Café da manhã incluso
+      </Label>
+      <Label onClick={() => setTour(!isTour)}>
+        <Span checked={isTour}></Span>
+        Passeio incluso
+      </Label>
+    </Container>
+  );
+}
 
 export default ActionBar;

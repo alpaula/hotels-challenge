@@ -7,7 +7,11 @@ import styled from 'styled-components';
 import {
   getBreakfastList,
   getTourAndBreakfastList,
-  getTourList
+  getTourList,
+  orderLowerClassificationList,
+  orderBiggerClassificationList,
+  orderLowerValueList,
+  orderBiggerValueList
 } from '../utils/utils';
 
 // Components
@@ -35,10 +39,11 @@ const Content = styled.ul`
 `;
 
 const App = () => {
-  const [hotelsList, setList] = useState(null);
+  const [hotelsList, setList] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [isBreakfast, setBreakfast] = useState(false);
   const [isTour, setTour] = useState(false);
+  const [isOrder, setOrder] = useState('biggerClassification');
 
   const getHotels = async () => {
     try {
@@ -55,6 +60,15 @@ const App = () => {
   useEffect(() => {
     getHotels();
   }, []);
+
+  const orderHotelsList = (list) => {
+    if (isOrder === 'lowerClassification') return orderLowerClassificationList(list);
+    if (isOrder === 'biggerClassification') return orderBiggerClassificationList(list);
+    if (isOrder === 'lowerValue') return orderLowerValueList(list);
+    if (isOrder === 'biggerValue') return orderBiggerValueList(list);
+
+    return list;
+  }
 
   const filterHotelsList = () => {
     if (isBreakfast && isTour) return getTourAndBreakfastList(hotelsList);
@@ -83,7 +97,7 @@ const App = () => {
 
     return (
       <Content>
-        {filterHotelsList().map(hotel => (
+        {orderHotelsList(filterHotelsList()).map(hotel => (
           <Card
             key={hotel.id}
             item={hotel}
@@ -102,6 +116,8 @@ const App = () => {
           setBreakfast={setBreakfast}
           isTour={isTour}
           setTour={setTour}
+          isOrder={isOrder}
+          setOrder={setOrder}
         />
         {renderContent()}
       </Container>
