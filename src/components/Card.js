@@ -5,6 +5,7 @@ import styled from 'styled-components';
 // Images
 import breakfastIcon from '../assets/breakfast.png';
 import tourIcon from '../assets/tour.png';
+import starIcon from '../assets/star.png';
 
 // Utils
 import { formatPrice, getLowerValue } from '../utils/utils';
@@ -51,10 +52,19 @@ const DetailsBox = styled.div`
   padding: 1rem;
 `;
 
+const BoxName = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const Name = styled.h2`
   margin: 0;
-  font: 500 1.275rem 'Roboto', sans-serif;
+  font: 500 1.125rem 'Roboto', sans-serif;
   color: var(--app-text);
+`;
+
+const StarList = styled.div`
+
 `;
 
 const City = styled.span`
@@ -81,7 +91,7 @@ const Label = styled.label`
 
 const Price = styled.span`
   margin-left: .5rem;
-  font: 400 1.125rem 'Roboto', sans-serif;
+  font: 400 1rem 'Roboto', sans-serif;
   color: var(--app-text);
 `;
 
@@ -91,7 +101,7 @@ const Icon = styled.img`
 `;
 
 const Field = styled.span`
-  font: 400 1.125rem 'Roboto', sans-serif;
+  font: 400 1rem 'Roboto', sans-serif;
   color: var(--app-text);
 `;
 
@@ -125,13 +135,28 @@ const Card = ({ item }) => {
     return formatPrice(value);
   }
 
+  const getStars = () => {
+    const starsList = [];
+
+    for (let i = 0; i < item.classification; i++) {
+      starsList.push(
+        <Icon src={starIcon} alt='ícone estrela' />
+      )
+    }
+
+    return starsList;
+  }
+
   return (
     <Container>
       <PhotoBox>
         <Photo src={item.photo} alt={`imagem do hotel ${item.name}`} />
       </PhotoBox>
       <DetailsBox>
-        <Name>{item.name}</Name>
+        <BoxName>
+          <Name>{item.name}</Name>
+          <StarList>{getStars()}</StarList>
+        </BoxName>
         <City>{item.city} - {item.state}</City>
         <Box>
           <Label>Diárias a partir de: </Label>
