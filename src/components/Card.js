@@ -16,6 +16,7 @@ const Container = styled.li`
   display: flex;
   align-items: center;
   width: calc(50% - .5rem);
+  min-width: 580px;
   height: 12rem;
   margin-bottom: 1rem;
   border-radius: 8px;
@@ -32,6 +33,16 @@ const Container = styled.li`
       display: initial;
     }
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    min-width: auto;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    height: 25rem;
+  }
 `;
 
 const PhotoBox = styled.div`
@@ -40,6 +51,11 @@ const PhotoBox = styled.div`
   width: 30%;
   height: 100%;
   overflow: hidden;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    height: 45%;
+  }
 `;
 
 const Photo = styled.img`
@@ -50,6 +66,11 @@ const DetailsBox = styled.div`
   width: 70%;
   height: 100%;
   padding: 1rem;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    height: 55%;
+  }
 `;
 
 const BoxName = styled.div`
@@ -124,6 +145,10 @@ const ReserveButton = styled.button`
     background-color: var(--app-dark);
     color: var(--app-white);
     box-shadow: 2px 2px 8px var(--app-dark-transparent);
+  }
+
+  @media (max-width: 480px) {
+    display: initial;
   }
 `;
 

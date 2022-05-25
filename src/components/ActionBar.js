@@ -11,8 +11,13 @@ const Container = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-  height: 4rem;
-  padding: 0 3rem;
+  padding: 1rem 3rem;
+
+  @media (max-width: 480px) {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
 `;
 
 const SelectOrder = styled.select`
@@ -29,6 +34,10 @@ const SelectOrder = styled.select`
   :hover {
     background-color: var(--app-light-second);
   }
+
+  @media (max-width: 480px) {
+    margin: 1rem 0;
+  }
 `;
 
 const OptionOrder = styled.option``;
@@ -41,6 +50,10 @@ const Label = styled.label`
   font: 400 1rem 'Roboto', sans-serif;
   color: var(--app-text);
   cursor: pointer;
+
+  @media (max-width: 480px) {
+    margin: .25rem 0;
+  }
 `;
 
 const Span = styled.span`

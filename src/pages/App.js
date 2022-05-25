@@ -36,6 +36,14 @@ const Content = styled.ul`
   max-width: 1440px;
   margin: 0 auto;
   padding: 2rem 3rem;
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
+
+  @media (max-width: 480px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const App = () => {
@@ -66,8 +74,6 @@ const App = () => {
     if (isOrder === 'biggerClassification') return orderBiggerClassificationList(list);
     if (isOrder === 'lowerValue') return orderLowerValueList(list);
     if (isOrder === 'biggerValue') return orderBiggerValueList(list);
-
-    return list;
   }
 
   const filterHotelsList = () => {

@@ -16,6 +16,10 @@ const Container = styled.header`
   padding: 0 3rem;
   background-color: var(--app-white-transparent);
   box-shadow: 0 0 12px #00000022;
+
+  @media (max-width: 480px) {
+    padding: 0 1rem;
+  }
 `;
 
 const Logo = styled.img`
