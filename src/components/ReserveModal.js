@@ -1,6 +1,6 @@
 // Libs
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // Utils
 import { formatPrice } from '../utils/utils';
@@ -12,6 +12,11 @@ import tourIcon from '../assets/tour.png';
 // Components
 import Stars from './Stars';
 import Checkbox from './input/Checkbox';
+
+const OpenAnimation = keyframes`
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+`;
 
 // Styles
 const Container = styled.div`
@@ -25,6 +30,7 @@ const Container = styled.div`
   height: 100vh;
   background-color: var(--app-white-transparent);
   backdrop-filter: blur(2px);
+  animation: ${OpenAnimation} .5s;
 `;
 
 const Content = styled.div`
