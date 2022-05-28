@@ -19,6 +19,7 @@ import Header from '../components/Header';
 import ActionBar from '../components/ActionBar';
 import Card from '../components/Card';
 import CardPlaceholder from '../components/CardPlaceholder';
+import ReserveModal from '../components/ReserveModal';
 
 // Styles
 const Container = styled.div`
@@ -51,6 +52,8 @@ const App = () => {
   const [isLoading, setLoading] = useState(false);
   const [isBreakfast, setBreakfast] = useState(false);
   const [isTour, setTour] = useState(false);
+  const [isModal, setModal] = useState(false);
+  const [selectedHotel, setSelectedHotel] = useState(null);
   const [isOrder, setOrder] = useState('biggerClassification');
 
   const getHotels = async () => {
@@ -103,12 +106,20 @@ const App = () => {
 
     return (
       <Content>
-        {orderHotelsList(filterHotelsList()).map(hotel => (
-          <Card
-            key={hotel.id}
-            item={hotel}
-          />
-        ))}
+        {orderHotelsList(filterHotelsList()).map(hotel => {
+          const handleSelectedHotel = () => {
+            setSelectedHotel(hotel);
+            setModal(true);
+          }
+
+          return (
+            <Card
+              key={hotel.id}
+              item={hotel}
+              handleSelectedHotel={handleSelectedHotel}
+            />
+          )
+        })}
       </Content>
     )
   }
@@ -127,6 +138,11 @@ const App = () => {
         />
         {renderContent()}
       </Container>
+      {isModal && <ReserveModal
+        setModal={setModal}
+        hotel={selectedHotel}
+        setSelectedHotel={setSelectedHotel}
+      />}
     </Fragment>
   );
 }
