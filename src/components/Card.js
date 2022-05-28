@@ -5,10 +5,12 @@ import styled from 'styled-components';
 // Images
 import breakfastIcon from '../assets/breakfast.png';
 import tourIcon from '../assets/tour.png';
-import starIcon from '../assets/star.png';
 
 // Utils
 import { formatPrice, getLowerValue } from '../utils/utils';
+
+// Components
+import Stars from './Stars';
 
 // Styles
 const Container = styled.li`
@@ -84,10 +86,6 @@ const Name = styled.h2`
   color: var(--app-text);
 `;
 
-const StarList = styled.div`
-
-`;
-
 const City = styled.span`
   margin-top: 0;
   font: 300 .875rem 'Roboto', sans-serif;
@@ -152,24 +150,15 @@ const ReserveButton = styled.button`
   }
 `;
 
-const Card = ({ item }) => {
+const Card = ({
+  item,
+  handleSelectedHotel
+}) => {
   const getPrice = () => {
     const { week, weekend } = item.prices;
     const value = getLowerValue(week, weekend);
 
     return formatPrice(value);
-  }
-
-  const getStars = () => {
-    const starsList = [];
-
-    for (let i = 0; i < item.classification; i++) {
-      starsList.push(
-        <Icon src={starIcon} alt='ícone estrela' />
-      )
-    }
-
-    return starsList;
   }
 
   return (
@@ -180,7 +169,10 @@ const Card = ({ item }) => {
       <DetailsBox>
         <BoxName>
           <Name>{item.name}</Name>
-          <StarList>{getStars()}</StarList>
+          <Stars
+            classification={item.classification}
+            width='1.25rem'
+          />
         </BoxName>
         <City>{item.city} - {item.state}</City>
         <Box>
@@ -196,7 +188,9 @@ const Card = ({ item }) => {
           <Field>Passeio incluso</Field>
         </Box>
       </DetailsBox>
-      <ReserveButton>reservar</ReserveButton>
+      <ReserveButton onClick={handleSelectedHotel}>
+        reservar
+      </ReserveButton>
     </Container>
   );
 }
