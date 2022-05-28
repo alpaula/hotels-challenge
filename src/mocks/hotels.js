@@ -5,7 +5,7 @@ export const hotelsData = [
     address: 'Av. Lúcio Costa, 5400 - Barra da Tijuca',
     city: 'Rio de Janeiro',
     state: 'RJ',
-    photo: 'https://visit.rio/wp-content/uploads/2016/03/destacada.jpg',
+    photo: 'https://thumbcdn-4.hotelurbano.net/KMgrbvNwqGsuE1m5MQ2Gxi8gGrs=/trim:bottom-right:80/bottom/filters:quality(50)/https%3A//novo-hu.s3.amazonaws.com/reservas/ota/prod/hotel/1735/windsor-marapendi-hotel-004_20190625114933.jpg',
     tour: false,
     breakfast: false,
     classification: 5,
