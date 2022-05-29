@@ -12,6 +12,7 @@ import tourIcon from '../assets/tour.png';
 // Components
 import Stars from './Stars';
 import Checkbox from './input/Checkbox';
+import axios from 'axios';
 
 const OpenAnimation = keyframes`
   0%   { opacity: 0; }
@@ -194,6 +195,25 @@ const ReserveModal = ({
   const [isBreakfast, setBreakfast] = useState(hotel.breakfast);
   const [isTour, setTour] = useState(hotel.tour);
 
+  const handleReserve = async () => {
+    try {
+      await axios({
+        method: 'post',
+        url: '/reserve',
+        data: {
+          ...hotel,
+          type: selectedPrice,
+          prices: {
+              room: hotel.prices[selectedPrice],
+              breakfast: !hotel.breakfast && isBreakfast ? getBreakfastPrice() : 0,
+              tour: !hotel.tour && isTour ? getTourPrice() : 0,
+              reserve: getTotalPrice()
+          },
+        }
+      });
+    } catch (err) {}
+  }
+
   const handleCloseModal = () => {
     setModal(false);
     setSelectedHotel(null);
@@ -204,9 +224,15 @@ const ReserveModal = ({
     setPrice(value);
   }
 
-  const getBreakfastPrice = () => hotel.prices[selectedPrice] * 0.1;
+  const getBreakfastPrice = () => {
+    const value = hotel.prices[selectedPrice] * 0.1;
+    return +value.toFixed(2);
+  };
 
-  const getTourPrice = () => hotel.prices[selectedPrice] * 0.2;
+  const getTourPrice = () => {
+    const value = hotel.prices[selectedPrice] * 0.2
+    return +value.toFixed(2);
+  };
 
   const getTotalPrice = () => {
     let value = hotel.prices[selectedPrice];
@@ -219,7 +245,7 @@ const ReserveModal = ({
       value = value + getTourPrice();
     }
 
-    return formatPrice(value);
+    return value;
   }
 
   return (
@@ -319,12 +345,14 @@ const ReserveModal = ({
             <Row>
               <Label>Total:</Label>
               <Span>
-                {getTotalPrice()}
+                {formatPrice(getTotalPrice())}
               </Span>
             </Row>
           </Box>
         </BoxDetails>
-        <ReserveButton>Confirmar Reserva</ReserveButton>
+        <ReserveButton onClick={handleReserve}>
+          Confirmar Reserva
+        </ReserveButton>
       </Content>
     </Container>
   );
