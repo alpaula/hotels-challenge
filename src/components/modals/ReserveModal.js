@@ -9,7 +9,7 @@ import { formatPrice } from '../../utils/utils';
 // Images
 import breakfastIcon from '../../assets/breakfast.png';
 import tourIcon from '../../assets/tour.png';
-import loadingIcon from '../../assets/loading.svg';
+import loadingIcon from '../../assets/loading-pink.svg';
 
 // Components
 import Stars from '../Stars';
