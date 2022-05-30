@@ -190,6 +190,18 @@ const ReserveModal = ({
   const [isTour, setTour] = useState(hotel.tour);
   const [loading, setLoading] = useState(false);
 
+  const selectBreakfastPrice = () => {
+    if (!hotel.breakfast && isBreakfast) return getBreakfastPrice();
+    if (hotel.breakfast) return 0;
+    return null;
+  }
+
+  const selectTourPrice = () => {
+    if (!hotel.tour && isTour) return getTourPrice();
+    if (hotel.tour) return 0;
+    return null;
+  }
+
   const handleReserve = async () => {
     try {
       setLoading(true);
@@ -202,8 +214,8 @@ const ReserveModal = ({
           type: selectedPrice,
           prices: {
             room: hotel.prices[selectedPrice],
-            breakfast: !hotel.breakfast && isBreakfast ? getBreakfastPrice() : 0,
-            tour: !hotel.tour && isTour ? getTourPrice() : 0,
+            breakfast: selectBreakfastPrice(),
+            tour: selectTourPrice(),
             reserve: getTotalPrice()
           },
         }
