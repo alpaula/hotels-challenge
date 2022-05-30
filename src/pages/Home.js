@@ -104,6 +104,8 @@ const Home = () => {
         {placeholderList.map((item, index) => (
           <CardPlaceholder
             key={index}
+            width='calc(50% - .5rem)'
+            height='12rem'
           />
         ))}
       </Content>

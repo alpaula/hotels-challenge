@@ -105,6 +105,9 @@ const Reserves = () => {
         {placeholderList.map((item, index) => (
           <CardPlaceholder
             key={index}
+            width='60%'
+            height='15rem'
+            margin='auto'
           />
         ))}
       </List>

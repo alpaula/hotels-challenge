@@ -6,15 +6,24 @@ import styled from 'styled-components';
 const Container = styled.li`
   display: flex;
   align-items: center;
-  width: calc(50% - .5rem);
-  height: 12rem;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
+  ${({ margin }) => margin && `margin: ${margin}`};
   margin-bottom: 1rem;
   border-radius: 8px;
   background-color: var(--app-white-transparent);
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-const CardPlaceholder = () => (
-  <Container />
+const CardPlaceholder = ({ width, height, margin }) => (
+  <Container
+    width={width}
+    height={height}
+    margin={margin}
+  />
 );
 
 export default CardPlaceholder;
