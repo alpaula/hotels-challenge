@@ -60,7 +60,7 @@ const ActionBar = ({
         <OptionOrder value='lowerValue'>Menor para maior valor</OptionOrder>
         <OptionOrder value='biggerValue'>Maior para menor valor</OptionOrder>
         <OptionOrder value='lowerClassification'>Menor para maior classificação</OptionOrder>
-        <OptionOrder value='biggerClassification' selected>Maior para menor classificação</OptionOrder>
+        <OptionOrder value='biggerClassification' defaultValue>Maior para menor classificação</OptionOrder>
       </SelectOrder>
       <Checkbox
         onClick={() => setBreakfast(!isBreakfast)}

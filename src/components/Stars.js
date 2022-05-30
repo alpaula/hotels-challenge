@@ -24,6 +24,7 @@ const Stars = ({
     for (let i = 0; i < classification; i++) {
       starsList.push(
         <Icon
+          key={i}
           src={starIcon}
           alt='ícone estrela'
           width={width}
