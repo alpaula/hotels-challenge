@@ -1,9 +1,11 @@
 // Libs
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 // Images
 import logo from '../assets/logo-h.png';
+import { Link } from 'react-router-dom';
 
 // Styles
 const Container = styled.header`
@@ -11,6 +13,7 @@ const Container = styled.header`
   top: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 4rem;
   padding: 0 3rem;
@@ -23,16 +26,31 @@ const Container = styled.header`
 `;
 
 const Logo = styled.img`
-  height: 75%;
+  height: 3rem;
   filter: drop-shadow(4px 6px 6px var(--app-dark-transparent));
 `;
 
-const Header = () => {
-  return (
-    <Container>
+const ReserveButton = styled.button`
+  border: none;
+  background-color: transparent;
+  font: 400 1.125rem 'Roboto', sans-serif;
+  color: var(--app-text);
+  cursor: pointer;
+
+  :hover {
+    filter: drop-shadow(4px 6px 6px var(--app-dark-transparent));
+  }
+`;
+
+const Header = () => (
+  <Container>
+    <Link to='/'>
       <Logo src={logo} />
-    </Container>
-  );
-}
+    </Link>
+    <Link to='/reserves'>
+      <ReserveButton>Minhas reservas</ReserveButton>
+    </Link>
+  </Container>
+);
 
 export default Header;
