@@ -1,7 +1,6 @@
 // Libs
 import React from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
 
 // Images
 import logo from '../assets/logo-h.png';
