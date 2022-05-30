@@ -56,11 +56,11 @@ const ActionBar = ({
 
   return (
     <Container>
-      <SelectOrder name='order' onChange={handleOrder}>
+      <SelectOrder name='order' onChange={handleOrder} defaultValue="biggerClassification">
         <OptionOrder value='lowerValue'>Menor para maior valor</OptionOrder>
         <OptionOrder value='biggerValue'>Maior para menor valor</OptionOrder>
         <OptionOrder value='lowerClassification'>Menor para maior classificação</OptionOrder>
-        <OptionOrder value='biggerClassification' defaultValue>Maior para menor classificação</OptionOrder>
+        <OptionOrder value='biggerClassification'>Maior para menor classificação</OptionOrder>
       </SelectOrder>
       <Checkbox
         onClick={() => setBreakfast(!isBreakfast)}
