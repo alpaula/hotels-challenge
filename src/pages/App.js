@@ -19,7 +19,9 @@ import Header from '../components/Header';
 import ActionBar from '../components/ActionBar';
 import Card from '../components/Card';
 import CardPlaceholder from '../components/CardPlaceholder';
-import ReserveModal from '../components/ReserveModal';
+import ReserveModal from '../components/modals/ReserveModal';
+import Modals from '../components/modals/Modals';
+import ConfirmReserveModal from '../components/modals/ConfirmReserveModal';
 
 // Styles
 const Container = styled.div`
@@ -52,7 +54,7 @@ const App = () => {
   const [isLoading, setLoading] = useState(false);
   const [isBreakfast, setBreakfast] = useState(false);
   const [isTour, setTour] = useState(false);
-  const [isModal, setModal] = useState(false);
+  const [modal, setModal] = useState({ type: '', isOpen: false });
   const [selectedHotel, setSelectedHotel] = useState(null);
   const [isOrder, setOrder] = useState('biggerClassification');
 
@@ -71,6 +73,14 @@ const App = () => {
   useEffect(() => {
     getHotels();
   }, []);
+
+  const handleCloseModal = () => {
+    setModal({
+      type: '',
+      isOpen: false
+    });
+    setSelectedHotel(null);
+  }
 
   const orderHotelsList = (list) => {
     if (isOrder === 'lowerClassification') return orderLowerClassificationList(list);
@@ -109,7 +119,10 @@ const App = () => {
         {orderHotelsList(filterHotelsList()).map(hotel => {
           const handleSelectedHotel = () => {
             setSelectedHotel(hotel);
-            setModal(true);
+            setModal({
+              type: 'reserve',
+              isOpen: true
+            });
           }
 
           return (
@@ -122,6 +135,26 @@ const App = () => {
         })}
       </Content>
     )
+  }
+
+  const renderModal = () => {
+    if (modal.type === 'reserve') {
+      return (
+        <ReserveModal
+          setModal={setModal}
+          hotel={selectedHotel}
+          handleCloseModal={handleCloseModal}
+        />
+      );
+    }
+
+    if (modal.type === 'confirm-reserve') {
+      return (
+        <ConfirmReserveModal
+          handleCloseModal={handleCloseModal}
+        />
+      );
+    }
   }
 
   return (
@@ -138,11 +171,10 @@ const App = () => {
         />
         {renderContent()}
       </Container>
-      {isModal && <ReserveModal
-        setModal={setModal}
-        hotel={selectedHotel}
-        setSelectedHotel={setSelectedHotel}
-      />}
+      {modal.isOpen &&
+        <Modals handleCloseModal={handleCloseModal}>
+          {renderModal()}
+        </Modals>}
     </Fragment>
   );
 }

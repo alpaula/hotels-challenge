@@ -21,6 +21,7 @@ export const handlers = [
     });
 
     return res(
+      ctx.delay(1500),
       ctx.status(200),
     )
   }),
