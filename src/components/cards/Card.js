@@ -3,14 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 // Images
-import breakfastIcon from '../assets/breakfast.png';
-import tourIcon from '../assets/tour.png';
+import breakfastIcon from '../../assets/breakfast.png';
+import tourIcon from '../../assets/tour.png';
 
 // Utils
-import { formatPrice, getLowerValue } from '../utils/utils';
+import { formatPrice, getLowerValue } from '../../utils/utils';
 
 // Components
-import Stars from './Stars';
+import Stars from '../Stars';
 
 // Styles
 const Container = styled.li`
