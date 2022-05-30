@@ -16,8 +16,8 @@ import {
 
 // Components
 import ActionBar from '../components/ActionBar';
-import Card from '../components/Card';
-import CardPlaceholder from '../components/CardPlaceholder';
+import Card from '../components/cards/Card';
+import CardPlaceholder from '../components/cards/CardPlaceholder';
 import ReserveModal from '../components/modals/ReserveModal';
 import Modals from '../components/modals/Modals';
 import ConfirmReserveModal from '../components/modals/ConfirmReserveModal';
