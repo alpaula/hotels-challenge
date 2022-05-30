@@ -25,13 +25,27 @@ export const handlers = [
       ctx.status(200),
     )
   }),
-  rest.get('/reserve', (req, res, ctx) => {
+  rest.get('/reserves', (req, res, ctx) => {
     const data = db.reserve.getAll();
 
     return res(
       ctx.delay(1500),
       ctx.status(200),
       ctx.json(data),
+    )
+  }),
+  rest.delete('/reserves', (req, res, ctx) => {
+    db.reserve.delete({
+      where: {
+        id: {
+          equals: req.body.id,
+        },
+      },
+    })
+
+    return res(
+      ctx.delay(1500),
+      ctx.status(200),
     )
   }),
 ]

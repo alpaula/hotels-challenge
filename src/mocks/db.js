@@ -1,5 +1,5 @@
 // Libs
-import { factory, primaryKey } from '@mswjs/data'
+import { factory, nullable, primaryKey } from '@mswjs/data'
 
 export const db = factory({
   reserve: {
@@ -13,8 +13,8 @@ export const db = factory({
     type: (String),
     prices: {
       room: Number,
-      breakfast: Number,
-      tour: Number,
+      breakfast: nullable(Number),
+      tour: nullable(Number),
       reserve: Number
     },
   },
