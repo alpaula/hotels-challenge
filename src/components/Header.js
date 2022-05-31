@@ -42,7 +42,7 @@ const ReserveButton = styled.button`
 const Header = () => (
   <Container>
     <Link to='/'>
-      <Logo src={logo} />
+      <Logo src={logo} alt='logo' />
     </Link>
     <Link to='/reserves'>
       <ReserveButton>Minhas reservas</ReserveButton>
