@@ -116,7 +116,7 @@ const Reserves = () => {
 
   const renderEmpty = () => (
     <Box>
-      <EmptyIcon src={emptyIcon} />
+      <EmptyIcon src={emptyIcon} alt='ícone de vazio' />
       <Title>Você ainda não possui reserva</Title>
     </Box>
   );

@@ -266,7 +266,7 @@ const ReserveModal = ({
         x
       </CloseButton>
       <BoxDetails>
-        <CoverImage src={hotel.photo} />
+        <CoverImage src={hotel.photo} alt='imagem do hotel' />
         <Box width='calc(65% - 1rem)'>
           <Stars
             classification={hotel.classification}
