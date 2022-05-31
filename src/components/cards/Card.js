@@ -162,7 +162,7 @@ const Card = ({
   }
 
   return (
-    <Container>
+    <Container data-testid='hotel-item'>
       <PhotoBox>
         <Photo src={item.photo} alt={`imagem do hotel ${item.name}`} />
       </PhotoBox>

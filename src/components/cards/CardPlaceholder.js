@@ -20,6 +20,7 @@ const Container = styled.li`
 
 const CardPlaceholder = ({ width, height, margin }) => (
   <Container
+    data-testid='hotel-placeholder-item'
     width={width}
     height={height}
     margin={margin}
