@@ -1,4 +1,20 @@
-# Getting Started with Create React App
+# Hotel reservation app
+
+## Were used for this project:
+
+- React
+- Hooks
+- Mock Service Worker
+- Cypress
+- Jest
+- Axios
+- Styled Components
+
+## Access link
+
+**https://main--timely-griffin-6e5fba.netlify.app/**
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
