@@ -146,11 +146,9 @@ const Reserves = () => {
   }
 
   return (
-    <Fragment>
-      <Container>
-        {renderContent()}
-      </Container>
-    </Fragment>
+    <Container>
+      {renderContent()}
+    </Container>
   );
 }
 
